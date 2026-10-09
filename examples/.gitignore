@@ -1,0 +1,3 @@
+# Everything under data/ is rebuilt by the scripts, except the HEI template.
+data/*
+!data/hei_figures.example.csv
