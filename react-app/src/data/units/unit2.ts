@@ -19,11 +19,11 @@ export const UNIT2: UnitDef = {
         "Scope is a real decision. Every U.S. institution for five years is small enough for SQLite and lets students compare YSU with anyone. Ohio only is smaller and simpler but rules out out-of-state peers. This course keeps everything and filters in queries, because the filter is easy to add later and impossible to undo.",
       ],
       topics: [
-        "Complete data files: one zip per survey file per year, plus a dictionary",
-        "Which survey files to start with: HD, C_A, EF_A",
-        "Choosing years, and why at least five",
-        "Idempotent downloads: re-running fetches only what is missing",
-        "A missing file is information, not a crash",
+        { id: "complete-files", text: "Complete data files: one zip per survey file per year, plus a dictionary" },
+        { id: "starting-files", text: "Which survey files to start with: HD, C_A, EF_A" },
+        { id: "choosing-years", text: "Choosing years, and why at least five" },
+        { id: "idempotent", text: "Idempotent downloads: re-running fetches only what is missing" },
+        { id: "missing-files", text: "A missing file is information, not a crash" },
       ],
       excerpts: [
         {
@@ -73,12 +73,12 @@ if target.exists():
         "The AI courses query the curated layer. A student writing a text-to-SQL agent in Agentic AI Foundations should see institution.name and completions.awards_total, not INSTNM and CTOTALT. When a curated column is wrong, the raw layer is how you find out why.",
       ],
       topics: [
-        "Raw tables: as delivered, never edited",
-        "Revised files (_rv) and recording which version was loaded",
-        "The load log: what came from where, and when",
-        "Curated tables: readable names, real types, one grain each",
-        "Stacking years, and a file_year column that says what it is",
-        "Why SQLite is the default, and when SQL Server is worth it",
+        { id: "raw-tables", text: "Raw tables: as delivered, never edited" },
+        { id: "revised-files", text: "Revised files (_rv) and recording which version was loaded" },
+        { id: "load-log", text: "The load log: what came from where, and when" },
+        { id: "curated-tables", text: "Curated tables: readable names, real types, one grain each" },
+        { id: "stacking-years", text: "Stacking years, and a file_year column that says what it is" },
+        { id: "sqlite-vs-server", text: "Why SQLite is the default, and when SQL Server is worth it" },
       ],
       excerpts: [
         {
@@ -142,12 +142,12 @@ if target.exists():
         "Each of those has a defence. Blanks load as NULL and stay NULL. Codes are joined to their labels from the dictionary, never interpreted from memory. Total rows are excluded by rule. And any comparison across years starts by checking that the variable means the same thing in both. IPEDS also flags imputed values, filled in by NCES for institutions that did not respond, and the dictionary explains how. An AI model trained on imputed values without knowing it is learning NCES's estimate, not the institution's report.",
       ],
       topics: [
-        "NULL, zero, and not applicable",
-        "Code values and their labels",
-        "Imputation flags, and what they do to a model",
-        "Subtotal and grand-total rows that must not be double-counted",
-        "Variables that are added, renamed or redefined between years",
-        "CIP revisions: when a program's code changes but the program does not",
+        { id: "null-zero-na", text: "NULL, zero, and not applicable" },
+        { id: "codes-labels", text: "Code values and their labels" },
+        { id: "imputation", text: "Imputation flags, and what they do to a model" },
+        { id: "total-rows", text: "Subtotal and grand-total rows that must not be double-counted" },
+        { id: "changing-variables", text: "Variables that are added, renamed or redefined between years" },
+        { id: "cip-revisions", text: "CIP revisions: when a program's code changes but the program does not" },
       ],
       excerpts: [
         {
@@ -202,11 +202,11 @@ if missing:
         "Checks come in two strengths. A FAIL means the build is wrong and must not ship. A WARN means the data says something surprising, and the response is to read the dictionary, not to patch the number. Knowing which is which is most of the skill.",
       ],
       topics: [
-        "Row counts, key uniqueness, and referential integrity",
-        "Range checks: no negative counts, plausible totals",
-        "Detail-to-total checks, and why a mismatch may be legitimate",
-        "Checking a curated figure against a published IPEDS table",
-        "FAIL versus WARN, and exit codes that stop a release",
+        { id: "integrity-checks", text: "Row counts, key uniqueness, and referential integrity" },
+        { id: "range-checks", text: "Range checks: no negative counts, plausible totals" },
+        { id: "detail-totals", text: "Detail-to-total checks, and why a mismatch may be legitimate" },
+        { id: "published-tables", text: "Checking a curated figure against a published IPEDS table" },
+        { id: "fail-warn", text: "FAIL versus WARN, and exit codes that stop a release" },
       ],
       excerpts: [
         {

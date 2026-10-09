@@ -67,6 +67,7 @@ export default function MainMenu() {
                 <a href="#/search">Search the course</a>
                 <a href="#/syllabus">Syllabus &amp; lab sittings</a>
                 <a href="#/resources">Resources</a>
+                <a href="#/glossary">Glossary</a>
               </div>
             )}
           </div>

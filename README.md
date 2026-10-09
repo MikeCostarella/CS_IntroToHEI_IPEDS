@@ -6,7 +6,8 @@ courses to use in their projects.
 
 **Live site:** https://mikecostarella.github.io/CS_IntroToHEI_IPEDS/
 
-Twelve modules in four units. The output is a versioned **project kit**: a
+Twelve modules in four units, each with full lecture notes (65 topic sections,
+with takeaways, check-yourself questions and glossary pop-ups). The output is a versioned **project kit**: a
 SQLite database, CSV extracts, a data dictionary, a datasheet, and a
 first-hour script.
 

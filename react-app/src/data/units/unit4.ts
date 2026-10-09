@@ -19,12 +19,12 @@ export const UNIT4: UnitDef = {
         "Each release gets a version number and a changelog. When a course says its projects use kit 1.2, every student gets the same numbers, and when the data changes, the change is written down.",
       ],
       topics: [
-        "The five parts of the kit",
-        "CSV extracts, and keeping codes as text",
-        "A one-page orientation: what is in it, what is not, the traps",
-        "The first-hour script",
-        "Semantic versions and a changelog for data",
-        "GitHub Releases as the distribution point",
+        { id: "five-parts", text: "The five parts of the kit" },
+        { id: "csv-extracts", text: "CSV extracts, and keeping codes as text" },
+        { id: "orientation", text: "A one-page orientation: what is in it, what is not, the traps" },
+        { id: "first-hour", text: "The first-hour script" },
+        { id: "versioning", text: "Semantic versions and a changelog for data" },
+        { id: "releases", text: "GitHub Releases as the distribution point" },
       ],
       excerpts: [
         {
@@ -71,12 +71,12 @@ export const UNIT4: UnitDef = {
         "Introduction to AI/ML uses the data for regression, classification and clustering, such as predicting graduation rates from institutional characteristics or finding YSU's real peer group. LLM Foundations uses the IPEDS documentation for retrieval and builds evaluation sets from questions with numeric answers that can be checked. Agentic AI Foundations builds a text-to-SQL agent over the curated layer, a read-only MCP server, and the reconciliation agent from Module 8.",
       ],
       topics: [
-        "What makes a good project brief",
-        "Machine-learning briefs: regression, classification, clustering",
-        "LLM briefs: retrieval over documentation, numeric evaluation sets",
-        "Agent briefs: text-to-SQL, a read-only MCP server, reconciliation",
-        "Evaluation sets with ground truth from the curated layer",
-        "Read-only access as the default for any agent",
+        { id: "good-brief", text: "What makes a good project brief" },
+        { id: "ml-briefs", text: "Machine-learning briefs: regression, classification, clustering" },
+        { id: "llm-briefs", text: "LLM briefs: retrieval over documentation, numeric evaluation sets" },
+        { id: "agent-briefs", text: "Agent briefs: text-to-SQL, a read-only MCP server, reconciliation" },
+        { id: "eval-sets", text: "Evaluation sets with ground truth from the curated layer" },
+        { id: "read-only", text: "Read-only access as the default for any agent" },
       ],
       resources: ["aiml-course", "llm-course", "agentic-course"],
       labs: [
@@ -106,10 +106,10 @@ export const UNIT4: UnitDef = {
         "Then it is handed over. The kit needs a maintainer, a schedule for adding each new IPEDS release, and a place for the AI courses to report problems. Writing that down is the last deliverable, because a shared dataset nobody maintains stops being shared within a year.",
       ],
       topics: [
-        "Running the build and checks in CI",
-        "Tagging a release and writing the changelog",
-        "The cold rebuild: a stranger, the README, and nothing else",
-        "Maintenance: an annual update, an owner, an issue tracker",
+        { id: "ci-build", text: "Running the build and checks in CI" },
+        { id: "tagging", text: "Tagging a release and writing the changelog" },
+        { id: "cold-rebuild", text: "The cold rebuild: a stranger, the README, and nothing else" },
+        { id: "maintenance", text: "Maintenance: an annual update, an owner, an issue tracker" },
       ],
       labs: [
         {

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import HomePage from "./components/HomePage";
 import SyllabusPage from "./components/SyllabusPage";
 import ModulePage from "./components/ModulePage";
+import NotesPage from "./components/NotesPage";
+import GlossaryPage from "./components/GlossaryPage";
 import ResourcesPage from "./components/ResourcesPage";
 import SearchPage from "./components/SearchPage";
 import SearchBox from "./components/SearchBox";
@@ -19,6 +21,8 @@ type Route =
   | { page: "home" }
   | { page: "syllabus" }
   | { page: "resources" }
+  | { page: "glossary" }
+  | { page: "notes"; id: string }
   | { page: "search"; query: string }
   | { page: "module"; id: string };
 
@@ -37,8 +41,9 @@ function parseHash(nonce: number): Location {
   const params = new URLSearchParams(qi === -1 ? "" : raw.slice(qi + 1));
 
   const route = ((): Route => {
-    const m = /^#\/m\/([a-z0-9]+)$/.exec(path);
-    if (m && MODULE_BY_ID[m[1]]) return { page: "module", id: m[1] };
+    const m = /^#\/m\/([a-z0-9]+)(\/notes)?$/.exec(path);
+    if (m && MODULE_BY_ID[m[1]]) return m[2] ? { page: "notes", id: m[1] } : { page: "module", id: m[1] };
+    if (path === "#/glossary") return { page: "glossary" };
     if (path === "#/syllabus") return { page: "syllabus" };
     if (path === "#/resources") return { page: "resources" };
     if (path === "#/search") return { page: "search", query: params.get("q") ?? "" };
@@ -63,11 +68,12 @@ const TOP_LINKS: { href: string; label: string; page: Route["page"] }[] = [
   { href: "#/", label: "Home", page: "home" },
   { href: "#/syllabus", label: "Syllabus", page: "syllabus" },
   { href: "#/resources", label: "Resources", page: "resources" },
+  { href: "#/glossary", label: "Glossary", page: "glossary" },
 ];
 
 export default function App() {
   const { route, section, nonce } = useLocation();
-  const activeModId = route.page === "module" ? route.id : null;
+  const activeModId = route.page === "module" || route.page === "notes" ? route.id : null;
 
   // Registry integrity is checked at runtime in dev. A bad edit to a unit file
   // should fail loudly, not render a subtly wrong syllabus.
@@ -143,6 +149,8 @@ export default function App() {
           {route.page === "resources" && <ResourcesPage />}
           {route.page === "search" && <SearchPage query={route.query} />}
           {route.page === "module" && <ModulePage mod={MODULE_BY_ID[route.id]} />}
+          {route.page === "notes" && <NotesPage mod={MODULE_BY_ID[route.id]} />}
+          {route.page === "glossary" && <GlossaryPage />}
         </main>
       </div>
 

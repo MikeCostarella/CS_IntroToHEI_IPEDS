@@ -186,3 +186,6 @@ export const RESOURCES: ResourceDef[] = [
 export const RESOURCE_BY_ID: Record<string, ResourceDef> = Object.fromEntries(
   RESOURCES.map((r) => [r.id, r]),
 );
+
+/** [[resource-id]] inside prose (see components/RichText.tsx). */
+export const REF_PATTERN = /\[\[([a-z0-9-]+)\]\]/g;

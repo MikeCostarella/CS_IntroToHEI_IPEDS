@@ -1,4 +1,5 @@
 import CodeBlock from "./CodeBlock";
+import { notesCoverage, notesHref, notesPageHref } from "../data/lectures";
 import { prevNext, unitOf } from "../data/modules";
 import { RESOURCE_BY_ID } from "../data/resources";
 import type { Callout, ModuleDef } from "../data/types";
@@ -37,11 +38,34 @@ export default function ModulePage({ mod }: { mod: ModuleDef }) {
       </section>
 
       <section id="topics">
-        <h2>What this module covers</h2>
+        <h2>Lecture topics</h2>
+        {(() => {
+          const { written, total } = notesCoverage(mod);
+          return written > 0 ? (
+            <p className="notes-status">
+              <a href={notesPageHref(mod.id)}>Lecture notes</a> · {written} of {total} topics written
+            </p>
+          ) : (
+            <p className="notes-status notes-none">Lecture notes for this module are coming.</p>
+          );
+        })()}
         <ul className="topics">
-          {mod.topics.map((t, i) => (
-            <li key={i}>{t}</li>
-          ))}
+          {mod.topics.map((t) => {
+            const href = notesHref(mod.id, t.id);
+            return (
+              <li key={t.id} id={`topic-${t.id}`}>
+                {href ? (
+                  <a className="topic-link" href={href}>
+                    {t.text}
+                  </a>
+                ) : (
+                  <>
+                    {t.text} <span className="notes-coming">notes coming</span>
+                  </>
+                )}
+              </li>
+            );
+          })}
         </ul>
       </section>
 

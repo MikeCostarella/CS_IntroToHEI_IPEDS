@@ -19,11 +19,11 @@ export const UNIT3: UnitDef = {
         "This is the most transferable skill in the course. Any organisation that combines data from two systems has this problem, and an AI system that answers questions across sources inherits it. The deliverable is not a corrected number. It is a written explanation that a reader can check.",
       ],
       topics: [
-        "Reporting periods: academic year, fiscal year, fall census",
-        "Definitions: who is counted, and in which category",
-        "Timing: provisional, final, and when each source was pulled",
-        "Matching keys across systems",
-        "Writing up a difference so it can be checked",
+        { id: "reporting-periods", text: "Reporting periods: academic year, fiscal year, fall census" },
+        { id: "definitions", text: "Definitions: who is counted, and in which category" },
+        { id: "timing", text: "Timing: provisional, final, and when each source was pulled" },
+        { id: "matching-keys", text: "Matching keys across systems" },
+        { id: "writing-up", text: "Writing up a difference so it can be checked" },
       ],
       excerpts: [
         {
@@ -74,12 +74,12 @@ export const UNIT3: UnitDef = {
         "The datasheet is where those rules live. It records where the data came from, what it covers, who is missing from it, what it should not be used for, and who maintains it. Introduction to AI/ML asks students to write a datasheet for a dataset they did not build. This module writes the one they will read.",
       ],
       topics: [
-        "Aggregate data versus student records, and why the line matters",
-        "FERPA in one page",
-        "Small-cell suppression",
-        "Institutional data requests go through the data office",
-        "Public-domain sources, attribution, and the course's own license",
-        "Datasheets for datasets",
+        { id: "aggregate-line", text: "Aggregate data versus student records, and why the line matters" },
+        { id: "ferpa", text: "FERPA in one page" },
+        { id: "small-cells", text: "Small-cell suppression" },
+        { id: "data-office", text: "Institutional data requests go through the data office" },
+        { id: "licensing", text: "Public-domain sources, attribution, and the course's own license" },
+        { id: "datasheets", text: "Datasheets for datasets" },
       ],
       resources: ["ferpa", "datasheets"],
       labs: [

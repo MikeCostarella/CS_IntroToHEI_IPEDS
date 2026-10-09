@@ -5,6 +5,8 @@
 import { COURSE } from "./course";
 import { MODULES, UNITS } from "./modules";
 import { RESOURCES } from "./resources";
+import { NOTES_BY_MODULE, noteBlockText } from "./lectures";
+import { GLOSSARY } from "./glossary";
 
 export type SearchKind =
   | "module"
@@ -14,7 +16,9 @@ export type SearchKind =
   | "unit"
   | "callout"
   | "resource"
-  | "page";
+  | "page"
+  | "notes"
+  | "term";
 
 export interface SearchDoc {
   id: string;
@@ -45,11 +49,14 @@ export const KIND_LABEL: Record<SearchKind, string> = {
   callout: "Note",
   resource: "Resource",
   page: "Page",
+  notes: "Lecture notes",
+  term: "Glossary",
 };
 
 /** Order the full results page groups results in. */
 export const KIND_ORDER: SearchKind[] = [
   "module",
+  "notes",
   "lab",
   "excerpt",
   "checkpoint",
@@ -57,6 +64,7 @@ export const KIND_ORDER: SearchKind[] = [
   "callout",
   "page",
   "resource",
+  "term",
 ];
 
 function build(): SearchDoc[] {
@@ -72,10 +80,25 @@ function build(): SearchDoc[] {
       title: m.title,
       subtitle: m.subtitle,
       kicker,
-      keywords: m.topics,
-      body: [...m.overview, ...m.topics].join(" "),
+      keywords: m.topics.map((t) => t.text),
+      body: [...m.overview, ...m.topics.map((t) => t.text)].join(" "),
       href: `#/m/${m.id}`,
     });
+
+    // One document per written lecture-notes section, so a search lands on the topic.
+    for (const sec of NOTES_BY_MODULE[m.id]?.sections ?? []) {
+      const topic = m.topics.find((t) => t.id === sec.topic);
+      if (!topic) continue;
+      docs.push({
+        id: `notes-${m.id}-${sec.topic}`,
+        kind: "notes",
+        title: topic.text,
+        subtitle: `Lecture notes · Module ${m.number} — ${m.title}`,
+        kicker: `Lecture notes · module ${m.number}`,
+        body: [...sec.blocks.map(noteBlockText), sec.takeaway ?? ""].filter(Boolean).join(" "),
+        href: `#/m/${m.id}/notes?s=topic-${sec.topic}`,
+      });
+    }
 
     // Each lab sitting stands alone: it has its own hours and deliverable.
     m.labs.forEach((lab) => {
@@ -128,6 +151,19 @@ function build(): SearchDoc[] {
         href: `#/m/${m.id}?s=checkpoint`,
       });
     }
+  }
+
+  for (const t of GLOSSARY) {
+    docs.push({
+      id: `term-${t.id}`,
+      kind: "term",
+      title: t.term,
+      subtitle: t.aka?.join(", "),
+      kicker: "Glossary",
+      keywords: [t.term, ...(t.aka ?? [])],
+      body: t.def.replace(/`/g, "").replace(/\*\*/g, ""),
+      href: `#/glossary?s=term-${t.id}`,
+    });
   }
 
   for (const u of UNITS) {

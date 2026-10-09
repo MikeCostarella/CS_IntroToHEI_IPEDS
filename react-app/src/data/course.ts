@@ -64,7 +64,7 @@ export const COURSE = {
   ],
 
   format:
-    "Twelve modules in four units. Each pairs a short read with one or two lab sittings of two to four hours. Every sitting adds something to the dataset or its documentation. There are no exams; the capstone is release 1.0 of the project kit, rebuilt from scratch by someone else.",
+    "Twelve modules in four units. Each has lecture notes, one section per topic with a takeaway and check-yourself questions, and one or two lab sittings of two to four hours. Terms with a dotted underline show their definition; the Glossary collects them all. Every sitting adds something to the dataset or its documentation. There are no exams; the capstone is release 1.0 of the project kit, rebuilt from scratch by someone else.",
 
   assessment: [
     "Each lab sitting has a named deliverable: a script that runs, a table of findings, or a short written explanation.",

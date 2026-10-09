@@ -61,9 +61,9 @@ describe("search", () => {
   it("honours the limit", () => expect(search("the", 3).length).toBeLessThanOrEqual(3));
 
   it("marks the matched words in the snippet", () => {
-    const [hit] = search("imputation");
+    const hit = search("imputation").find((h) => h.doc.kind === "notes");
     expect(hit).toBeDefined();
-    const marked = hit.snippet.filter((p) => p.hit).map((p) => p.text.toLowerCase());
+    const marked = hit!.snippet.filter((p) => p.hit).map((p) => p.text.toLowerCase());
     expect(marked.join(" ")).toContain("imput");
   });
 });
